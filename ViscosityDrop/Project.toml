@@ -1,0 +1,7 @@
+name = "ViscosityDrop"
+uuid = "705723c4-d9ab-4400-bab1-60d3fee429a1"
+authors = ["william davis <williamjsdavis@berkeley.edu>"]
+version = "0.1.0"
+
+[deps]
+Oceananigans = "9e8cae18-63c1-5223-a75c-80ca9d6e9a09"
