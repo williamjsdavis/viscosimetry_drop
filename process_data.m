@@ -3,13 +3,18 @@ clearvars, close all
 
 %% Import data
 
-test_data = importdata('./drop_r2_mu1e1.txt');
+test_data = importdata('./drop_r3_mu1e2.txt');
+
+%% Scales
+t_scale = 7.4e-2; % To milliseconds
+%t_scale = 1;
+x_scale = 1; % Millimeters
 
 %% Process
-t = test_data(:,1);
-r = test_data(:,2);
-y = test_data(:,3);
-z = test_data(:,4);
+t = t_scale*test_data(:,1);
+r = x_scale*test_data(:,2);
+y = x_scale*test_data(:,3);
+z = x_scale*test_data(:,4);
 se = test_data(:,5);
 
 figure
@@ -17,7 +22,7 @@ plot(t,se)
 
 %% Cut time
 
-t_max = 60;
+t_max = 1;
 
 i_max = find(t>t_max,1);
 
@@ -69,7 +74,7 @@ xlabel('Time')
 
 %% Get terminal velocity
 
-Njack = 10;
+Njack = 5;
 max_jackknife = jackknife(dzdt_smoothed,Njack,0.1);
 
 max_mean = mean(max_jackknife);
@@ -83,10 +88,10 @@ plot(t_cut,dzdt_smoothed,'r','LineWidth',2)
 plot(t_cut,max_mean*ones(size(t_cut)),'k','LineWidth',2)
 plot(t_cut,max_meanU*ones(size(t_cut)),'k--','LineWidth',2)
 plot(t_cut,max_meanL*ones(size(t_cut)),'k--','LineWidth',2)
-xlabel('Time, seconds')
-ylabel('Z velocity, mm/s')
+xlabel('Time, milliseconds')
+ylabel('Z velocity, m/s')
 legend('Data','Mean','2\sigma','Location','SouthEast')
-set(gca,'fontsize', 18)
+set(gca,'fontsize', 24)
 
 %% Functions
 function out_max = jackknife(data,N,frac)

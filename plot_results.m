@@ -3,10 +3,9 @@ clearvars, close all
 
 %% Data
 
-rR = [0.08, 0.1, 0.2, 0.3, 0.4, 0.5];
-
-Udata = [4e-5, 4e-5, 2e-5, 1e-5, 1e-5, 5e-5];
-Uerror = [4e-5, 4e-5, 2e-5, 1e-5, 1e-5, 2e-5];
+rR =     [0.1,    0.2,    0.3,    0.4,    0.5];
+Udata  = [0.0632, 0.1383, 0.1957, 0.2076, 0.2087];
+Uerror = [0.0029, 0.0103, 0.0056, 0.0031, 0.0034]*10;
 
 %% Predictions
 rR_range = linspace(0,1,100);
@@ -22,7 +21,7 @@ g_fix = 9.81;
 mu_fix = 1e-2;
 Z_fix = 2e-3;
 R_fix = 1e-3;
-delta_rho_fix = 1;
+delta_rho_fix = 13000;
 
 % r vector
 r_vec = R_fix*rR;
@@ -45,11 +44,27 @@ hold on,box on
 errorbar(rR,Udata,Uerror,'ko',...
     'LineWidth',2,'CapSize',15,...
     'MarkerSize',20,'MarkerFaceColor','k')
-scatter(rR,pred_U_stokes,'ro')
-plot(rR_range,range_U_stokes,'r')
-scatter(rR,pred_U_stokesFE,'go')
-plot(rR_range,range_U_stokesFE,'g')
-set(gca,'fontsize', 18)
+plot(rR_range,range_U_stokes,'r','LineWidth',2)
+plot(rR_range,range_U_stokesFE,'b','LineWidth',2)
+xlim([0,0.6])
+ylim([0,0.6])
+legend('Data','Stokes','Stokes + correction','Location','NorthWest')
+xlabel('Sphere to cylinder ratio, r/R')
+ylabel('Terminal velocity, ms^{-1}')
+set(gca,'fontsize', 24)
 
+figure
+hold on,box on
+errorbar(rR,Udata,Uerror,'ko',...
+    'LineWidth',2,'CapSize',15,...
+    'MarkerSize',20,'MarkerFaceColor','k')
+plot(rR_range,range_U_stokes,'r','LineWidth',2)
+plot(rR_range,range_U_stokesFE,'b','LineWidth',2)
+xlim([0,0.6])
+legend('Data','Stokes','Stokes + correction','Location','SouthEast')
+xlabel('Sphere to cylinder ratio, r/R')
+ylabel('Terminal velocity, ms^{-1}')
+set(gca,'fontsize', 24)
+set(gca, 'YScale', 'log')
 
 
