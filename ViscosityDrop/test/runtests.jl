@@ -11,7 +11,6 @@ using Test
     @test isa(grid32.Nz, Int)
     @test isa(grid32.yLength, Float64)
     @test isa(grid32.zLength, Float64)
-    @test isa(grid32.grid, RegularCartesianGrid)
     @test grid32.grid.Nx == 1
     @test grid32.grid.Ny == 32
     @test grid32.grid.Nz == 32
@@ -29,7 +28,6 @@ end
     @test isa(grid32.Nz, Int)
     @test isa(grid32.yLength, Float64)
     @test isa(grid32.zLength, Float64)
-    @test isa(grid32.grid, RegularCartesianGrid)
     @test grid32.grid.Nx == 1
     @test grid32.grid.Ny == 16
     @test grid32.grid.Nz == 32
