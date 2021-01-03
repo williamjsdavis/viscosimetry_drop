@@ -14,4 +14,8 @@ export Bounded2DGrid
 include("boundary_conditions.jl")
 export no_slip_bc
 
+using Oceananigans.Advection
+include("models.jl")
+export makeModel
+
 end # module

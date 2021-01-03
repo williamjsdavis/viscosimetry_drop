@@ -1,7 +1,7 @@
 using ViscosityDrop
 using Test
 
-@testset "Grid equal" begin
+@testset "Grids equal points" begin
     grid32 = Bounded2DGrid(32,32,2,2)
     @test grid32.Ny == 32
     @test grid32.Nz == 32
@@ -18,7 +18,7 @@ using Test
     @test grid32.grid.Lz == 2.0
 end
 
-@testset "Grid unequal" begin
+@testset "Grids unequal points" begin
     grid32 = Bounded2DGrid(16,32,2,3)
     @test grid32.Ny == 16
     @test grid32.Nz == 32
@@ -52,4 +52,36 @@ end
     @test w_bc.y.right.condition == 0.0
     @test w_bc.z.left.condition == 0.0
     @test w_bc.z.right.condition == 0.0
+end
+
+@testset "Making models (default)" begin
+    grid32 = Bounded2DGrid(16,32,2,3)
+    v_bc, w_bc = no_slip_bc(grid32)
+    model2D = makeModel(grid32, 1e-2)
+
+    @test model2D.grid.Nx == grid32.grid.Nx
+    @test model2D.grid.Ny == grid32.grid.Ny
+    @test model2D.grid.Nz == grid32.grid.Nz
+    @test model2D.grid.Ly == grid32.grid.Ly
+    @test model2D.grid.Lz == grid32.grid.Lz
+    @test model2D.closure.ν == 1e-2
+    @test Core.Typeof(model2D.timestepper).name.name == :RungeKutta3TimeStepper
+    @test Core.Typeof(model2D.advection).name.name == :WENO5
+end
+
+@testset "Making models (other options)" begin
+    using Oceananigans.Advection
+    grid32 = Bounded2DGrid(16,32,2,3)
+    v_bc, w_bc = no_slip_bc(grid32)
+    model2D = makeModel(grid32, 1e-2; timestepper = :QuasiAdamsBashforth2,
+                                      advection = CenteredSecondOrder())
+
+    @test model2D.grid.Nx == grid32.grid.Nx
+    @test model2D.grid.Ny == grid32.grid.Ny
+    @test model2D.grid.Nz == grid32.grid.Nz
+    @test model2D.grid.Ly == grid32.grid.Ly
+    @test model2D.grid.Lz == grid32.grid.Lz
+    @test model2D.closure.ν == 1e-2
+    @test Core.Typeof(model2D.timestepper).name.name == :QuasiAdamsBashforth2TimeStepper
+    @test Core.Typeof(model2D.advection).name.name == :CenteredSecondOrder
 end
