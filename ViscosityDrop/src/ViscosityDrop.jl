@@ -11,4 +11,7 @@ using Oceananigans.Grids
 include("grid.jl")
 export Bounded2DGrid
 
+include("boundary_conditions.jl")
+export no_slip_bc
+
 end # module

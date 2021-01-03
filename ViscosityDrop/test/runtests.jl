@@ -34,3 +34,22 @@ end
     @test grid32.grid.Ly == 2.0
     @test grid32.grid.Lz == 3.0
 end
+
+@testset "Boundary conditions" begin
+    grid32 = Bounded2DGrid(16,32,2,3)
+    v_bc, w_bc = no_slip_bc(grid32)
+
+    @test v_bc.x.left.condition == nothing
+    @test v_bc.x.right.condition == nothing
+    @test v_bc.y.left.condition == 0.0
+    @test v_bc.y.right.condition == 0.0
+    @test v_bc.z.left.condition == 0.0
+    @test v_bc.z.right.condition == 0.0
+
+    @test w_bc.x.left.condition == nothing
+    @test w_bc.x.right.condition == nothing
+    @test w_bc.y.left.condition == 0.0
+    @test w_bc.y.right.condition == 0.0
+    @test w_bc.z.left.condition == 0.0
+    @test w_bc.z.right.condition == 0.0
+end
