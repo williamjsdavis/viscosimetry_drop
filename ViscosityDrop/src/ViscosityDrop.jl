@@ -18,4 +18,7 @@ using Oceananigans.Advection
 include("models.jl")
 export make_model
 
+include("buoyancy.jl")
+export set_buoyancy!
+
 end # module

@@ -61,3 +61,21 @@ end
     @test Core.Typeof(model2D.advection).name.name == :CenteredSecondOrder
     @test model2D.clock.iteration == 0
 end
+
+@testset "Adding buoyancy" begin
+    grid = make_grid(32,32,2,2)
+    v_bc, w_bc = no_slip_bc(grid)
+    model2D = make_model(grid, 1e-2)
+
+    @test all(model2D.tracers.b[1,1:32,1:32] .== 0.0)
+
+    set_buoyancy!(model2D)
+    @test !all(model2D.tracers.b[1,1:32,1:32] .== 0.0)
+    @test model2D.tracers.b[1,15,25] == -1e-1
+    @test model2D.tracers.b[1,5,25] == 0.0
+
+    set_buoyancy!(model2D, z_position=0.6, width=0.3, amplitude=-2e-1)
+    @test !all(model2D.tracers.b[1,1:32,1:32] .== 0.0)
+    @test model2D.tracers.b[1,15,25] == -2e-1
+    @test model2D.tracers.b[1,5,25] == 0.0
+end
