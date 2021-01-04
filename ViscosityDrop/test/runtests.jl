@@ -67,6 +67,7 @@ end
     @test model2D.closure.ν == 1e-2
     @test Core.Typeof(model2D.timestepper).name.name == :RungeKutta3TimeStepper
     @test Core.Typeof(model2D.advection).name.name == :WENO5
+    @test model2D.clock.iteration == 0
 end
 
 @testset "Making models (other options)" begin
@@ -84,4 +85,5 @@ end
     @test model2D.closure.ν == 1e-2
     @test Core.Typeof(model2D.timestepper).name.name == :QuasiAdamsBashforth2TimeStepper
     @test Core.Typeof(model2D.advection).name.name == :CenteredSecondOrder
+    @test model2D.clock.iteration == 0
 end
