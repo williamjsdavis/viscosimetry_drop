@@ -16,6 +16,6 @@ export no_slip_bc
 
 using Oceananigans.Advection
 include("models.jl")
-export makeModel
+export make_model
 
 end # module

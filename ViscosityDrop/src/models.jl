@@ -1,4 +1,4 @@
-function makeModel(grid2D, ν; timestepper = :RungeKutta3, advection = WENO5())
+function make_model(grid2D, ν; timestepper = :RungeKutta3, advection = WENO5())
 
     v_bcs, w_bcs = no_slip_bc(grid2D)
 

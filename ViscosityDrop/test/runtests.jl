@@ -57,7 +57,7 @@ end
 @testset "Making models (default)" begin
     grid32 = Bounded2DGrid(16,32,2,3)
     v_bc, w_bc = no_slip_bc(grid32)
-    model2D = makeModel(grid32, 1e-2)
+    model2D = make_model(grid32, 1e-2)
 
     @test model2D.grid.Nx == grid32.grid.Nx
     @test model2D.grid.Ny == grid32.grid.Ny
@@ -74,8 +74,8 @@ end
     using Oceananigans.Advection
     grid32 = Bounded2DGrid(16,32,2,3)
     v_bc, w_bc = no_slip_bc(grid32)
-    model2D = makeModel(grid32, 1e-2; timestepper = :QuasiAdamsBashforth2,
-                                      advection = CenteredSecondOrder())
+    model2D = make_model(grid32, 1e-2; timestepper = :QuasiAdamsBashforth2,
+                                       advection = CenteredSecondOrder())
 
     @test model2D.grid.Nx == grid32.grid.Nx
     @test model2D.grid.Ny == grid32.grid.Ny
