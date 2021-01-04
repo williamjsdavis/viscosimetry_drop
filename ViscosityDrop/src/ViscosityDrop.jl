@@ -9,7 +9,7 @@ export greet
 
 using Oceananigans.Grids
 include("grid.jl")
-export Bounded2DGrid
+export make_grid
 
 include("boundary_conditions.jl")
 export no_slip_bc
