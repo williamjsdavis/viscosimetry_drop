@@ -15,7 +15,7 @@ include("boundary_conditions.jl")
 export no_slip_bc
 
 using Oceananigans.Advection
-include("models.jl")
+include("model.jl")
 export make_model
 
 include("buoyancy.jl")
