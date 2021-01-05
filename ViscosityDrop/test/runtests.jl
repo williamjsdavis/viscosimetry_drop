@@ -81,12 +81,39 @@ end
 end
 
 @testset "Simulation setup" begin
+    filename = "tmp"
+    dir = "."
     grid = make_grid(32,32,2,2)
     v_bc, w_bc = no_slip_bc(grid)
     model = make_model(grid, 1e-2)
     set_buoyancy!(model)
 
-    sim = make_simulation(model, "testfile", output_fields=:all)
-    #sim2D = make_simulation(model2D, "testfile", output_fields=:all)
-    #sim2D2 = make_simulation(model2D, "testfile", output_fields=:b)
+    sim = make_simulation(model, dir, filename, output_fields=:all)
+    @test sim.iteration_interval == 1000
+    @test sim.run_time == 0.0
+    @test sim.stop_time == 40.0
+    @test sim.Δt == 0.002
+    @test sim.output_writers.vals[1].schedule.interval == 0.5
+    @test typeof(sim.output_writers.vals[1]).parameters[1].parameters[1] == (:b, :v, :w, :ω, :s)
+    @test isfile("./tmp.jld2")
+
+    if isfile("./tmp.jld2")
+        rm("./tmp.jld2")
+    end
+
+    sim2 = make_simulation(model, dir, filename, Δt=0.001,
+                                                 stop_time=20.0,
+                                                 iteration_interval=2000,
+                                                 schedule_interval=0.4,
+                                                 output_fields=:b)
+    @test sim2.iteration_interval == 2000
+    @test sim2.run_time == 0.0
+    @test sim2.stop_time == 20.0
+    @test sim2.Δt == 0.001
+    @test sim2.output_writers.vals[1].schedule.interval == 0.4
+    @test isfile("./tmp.jld2")
+
+    if isfile("./tmp.jld2")
+        rm("./tmp.jld2")
+    end
 end
