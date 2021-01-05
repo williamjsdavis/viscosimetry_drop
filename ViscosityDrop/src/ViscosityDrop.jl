@@ -25,6 +25,6 @@ using Oceananigans.AbstractOperations
 using Oceananigans.Fields
 using Oceananigans.OutputWriters
 include("simulation.jl")
-export make_simulation
+export make_simulation, run!
 
 end # module

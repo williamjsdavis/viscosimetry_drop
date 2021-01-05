@@ -117,3 +117,22 @@ end
         rm("./tmp.jld2")
     end
 end
+
+@testset "Running simulation" begin
+    filename = "tmp"
+    dir = "."
+    grid = make_grid(16,16,2,2)
+    v_bc, w_bc = no_slip_bc(grid)
+    model = make_model(grid, 1e-2)
+    set_buoyancy!(model)
+
+    sim = make_simulation(model, dir, filename, output_fields=:all, stop_time=2.0)
+    run!(sim)
+
+    @test sim.model.clock.time == 2.0
+    @test isfile("./tmp.jld2")
+
+    if isfile("./tmp.jld2")
+        rm("./tmp.jld2")
+    end
+end
