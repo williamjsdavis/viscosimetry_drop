@@ -41,41 +41,52 @@ end
 @testset "Making models (default)" begin
     grid = make_grid(16,32,2,3)
     v_bc, w_bc = no_slip_bc(grid)
-    model2D = make_model(grid, 1e-2)
+    model = make_model(grid, 1e-2)
 
-    @test model2D.closure.ν == 1e-2
-    @test Core.Typeof(model2D.timestepper).name.name == :RungeKutta3TimeStepper
-    @test Core.Typeof(model2D.advection).name.name == :WENO5
-    @test model2D.clock.iteration == 0
+    @test model.closure.ν == 1e-2
+    @test Core.Typeof(model.timestepper).name.name == :RungeKutta3TimeStepper
+    @test Core.Typeof(model.advection).name.name == :WENO5
+    @test model.clock.iteration == 0
 end
 
 @testset "Making models (other options)" begin
     using Oceananigans.Advection
     grid = make_grid(16,32,2,3)
     v_bc, w_bc = no_slip_bc(grid)
-    model2D = make_model(grid, 1e-2; timestepper = :QuasiAdamsBashforth2,
+    model = make_model(grid, 1e-2; timestepper = :QuasiAdamsBashforth2,
                                      advection = CenteredSecondOrder())
 
-    @test model2D.closure.ν == 1e-2
-    @test Core.Typeof(model2D.timestepper).name.name == :QuasiAdamsBashforth2TimeStepper
-    @test Core.Typeof(model2D.advection).name.name == :CenteredSecondOrder
-    @test model2D.clock.iteration == 0
+    @test model.closure.ν == 1e-2
+    @test Core.Typeof(model.timestepper).name.name == :QuasiAdamsBashforth2TimeStepper
+    @test Core.Typeof(model.advection).name.name == :CenteredSecondOrder
+    @test model.clock.iteration == 0
 end
 
 @testset "Adding buoyancy" begin
     grid = make_grid(32,32,2,2)
     v_bc, w_bc = no_slip_bc(grid)
-    model2D = make_model(grid, 1e-2)
+    model = make_model(grid, 1e-2)
 
-    @test all(model2D.tracers.b[1,1:32,1:32] .== 0.0)
+    @test all(model.tracers.b[1,1:32,1:32] .== 0.0)
 
-    set_buoyancy!(model2D)
-    @test !all(model2D.tracers.b[1,1:32,1:32] .== 0.0)
-    @test model2D.tracers.b[1,15,25] == -1e-1
-    @test model2D.tracers.b[1,5,25] == 0.0
+    set_buoyancy!(model)
+    @test !all(model.tracers.b[1,1:32,1:32] .== 0.0)
+    @test model.tracers.b[1,15,25] == -1e-1
+    @test model.tracers.b[1,5,25] == 0.0
 
-    set_buoyancy!(model2D, z_position=0.6, width=0.3, amplitude=-2e-1)
-    @test !all(model2D.tracers.b[1,1:32,1:32] .== 0.0)
-    @test model2D.tracers.b[1,15,25] == -2e-1
-    @test model2D.tracers.b[1,5,25] == 0.0
+    set_buoyancy!(model, z_position=0.6, width=0.3, amplitude=-2e-1)
+    @test !all(model.tracers.b[1,1:32,1:32] .== 0.0)
+    @test model.tracers.b[1,15,25] == -2e-1
+    @test model.tracers.b[1,5,25] == 0.0
+end
+
+@testset "Simulation setup" begin
+    grid = make_grid(32,32,2,2)
+    v_bc, w_bc = no_slip_bc(grid)
+    model = make_model(grid, 1e-2)
+    set_buoyancy!(model)
+
+    sim = make_simulation(model, "testfile", output_fields=:all)
+    #sim2D = make_simulation(model2D, "testfile", output_fields=:all)
+    #sim2D2 = make_simulation(model2D, "testfile", output_fields=:b)
 end

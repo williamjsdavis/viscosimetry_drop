@@ -21,4 +21,10 @@ export make_model
 include("buoyancy.jl")
 export set_buoyancy!
 
+using Oceananigans.AbstractOperations
+using Oceananigans.Fields
+using Oceananigans.OutputWriters
+include("simulation.jl")
+export make_simulation
+
 end # module
