@@ -147,8 +147,8 @@ end
     using JLD2
     file = jldopen("./tmp.jld2")
     @test typeof(file["timeseries/t"]) == JLD2.Group{JLD2.JLDFile{JLD2.MmapIO}}
-    
-    last_key = last(key(file["timeseries/t"]))
+
+    last_key = last(keys(file["timeseries/t"]))
     last_time = "timeseries/t/" * last_key
     @test file[last_time] >= 4
 
