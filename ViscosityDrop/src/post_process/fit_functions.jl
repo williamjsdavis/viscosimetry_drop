@@ -3,7 +3,7 @@ struct ParameterGrid2D
     y₀_range::StepRangeLen{Float64,Base.TwicePrecision{Float64},Base.TwicePrecision{Float64}}
     z₀_range::StepRangeLen{Float64,Base.TwicePrecision{Float64},Base.TwicePrecision{Float64}}
 end
-ParameterGrid2D(Ly,Lz,Ncourse) = begin
+ParameterGrid2D(Ly::Number, Lz::Number, Ncourse::Int) = begin
     ParameterGrid2D(range(0,Ly/2,length=Ncourse),
                     range(-Ly/2,Ly/2,length=Ncourse),
                     range(-Lz,0,length=Ncourse))

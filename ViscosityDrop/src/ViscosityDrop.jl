@@ -5,9 +5,6 @@ using Optim
 using JLD2
 using DelimitedFiles
 
-greet() = print("Hello World!")
-export greet
-
 using Oceananigans.Grids
 include("grid.jl")
 export make_grid
