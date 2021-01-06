@@ -27,4 +27,7 @@ using Oceananigans.OutputWriters
 include("simulation.jl")
 export make_simulation, run!
 
+include("wrapper.jl")
+export do_all
+
 end # module
