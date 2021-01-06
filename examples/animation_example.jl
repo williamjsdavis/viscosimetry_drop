@@ -1,6 +1,6 @@
 using ViscosityDrop
 
-### Setup simulation
+### Setup simulation and run
 filename = "example"
 dir = "."
 Ny, Nz = 64, 64
