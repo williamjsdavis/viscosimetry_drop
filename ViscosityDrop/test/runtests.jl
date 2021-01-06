@@ -147,9 +147,9 @@ end
     using JLD2
     file = jldopen("./tmp.jld2")
     @test typeof(file["timeseries/t"]) == JLD2.Group{JLD2.JLDFile{JLD2.MmapIO}}
-    @test file["timeseries/t/2004"] >= 4 
+    @test file["timeseries/t/2004"] >= 4
 
     if isfile("./tmp.jld2")
-        #rm("./tmp.jld2")
+        rm("./tmp.jld2")
     end
 end
