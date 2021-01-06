@@ -141,7 +141,7 @@ end
     filename = "tmp"
     dir = "."
 
-    do_all(filename, dir, stop_time=4)
+    do_all(filename, dir, stop_time=2)
     @test isfile("./tmp.jld2")
 
     using JLD2
@@ -150,9 +150,33 @@ end
 
     last_key = last(keys(file["timeseries/t"]))
     last_time = "timeseries/t/" * last_key
-    @test file[last_time] >= 4
+    @test file[last_time] >= 2
 
     if isfile("./tmp.jld2")
         rm("./tmp.jld2")
     end
+end
+
+@testset "Post-processing" begin
+    filename = "tmp"
+    dir = "."
+    do_all(filename, dir, stop_time=2)
+    out_results = get_results(dir, dir, "tmp.jld2"; Ncourse=11, verbose=false)
+
+    @test isfile("./tmp.txt")
+    @test size(out_results, 2) == 5
+
+    using JLD2
+    file = jldopen("./tmp.jld2")
+    Nt = length(keys(file["timeseries/t"]))
+
+    @test size(out_results, 1) == Nt
+
+    if isfile("./tmp.jld2")
+        rm("./tmp.jld2")
+    end
+    if isfile("./tmp.txt")
+        rm("./tmp.txt")
+    end
+
 end
