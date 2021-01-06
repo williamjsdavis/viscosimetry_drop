@@ -53,10 +53,10 @@ end
     using Oceananigans.Advection
     grid = make_grid(16,32,2,3)
     v_bc, w_bc = no_slip_bc(grid)
-    model = make_model(grid, 1e-2; timestepper = :QuasiAdamsBashforth2,
+    model = make_model(grid, 2e-2; timestepper = :QuasiAdamsBashforth2,
                                      advection = CenteredSecondOrder())
 
-    @test model.closure.ν == 1e-2
+    @test model.closure.ν == 2e-2
     @test Core.Typeof(model.timestepper).name.name == :QuasiAdamsBashforth2TimeStepper
     @test Core.Typeof(model.advection).name.name == :CenteredSecondOrder
     @test model.clock.iteration == 0
