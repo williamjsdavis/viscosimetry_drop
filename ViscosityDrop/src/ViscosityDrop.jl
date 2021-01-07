@@ -6,26 +6,26 @@ using JLD2
 using DelimitedFiles
 
 using Oceananigans.Grids
-include("grid.jl")
+include("simulation/grid.jl")
 export make_grid
 
-include("boundary_conditions.jl")
+include("simulation/boundary_conditions.jl")
 export no_slip_bc
 
 using Oceananigans.Advection
-include("model.jl")
+include("simulation/model.jl")
 export make_model
 
-include("buoyancy.jl")
+include("simulation/buoyancy.jl")
 export set_buoyancy!
 
 using Oceananigans.AbstractOperations
 using Oceananigans.Fields
 using Oceananigans.OutputWriters
-include("simulation.jl")
+include("simulation/simulation.jl")
 export make_simulation, run!
 
-include("wrapper.jl")
+include("simulation/wrapper.jl")
 export do_all
 
 include("post_process/circle.jl")
