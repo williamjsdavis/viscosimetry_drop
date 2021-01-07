@@ -3,7 +3,7 @@ clearvars, close all
 
 %% Import data
 
-test_data = importdata('./drop_r3_mu1e2.txt');
+test_data = importdata('./results/drop_r3_mu1e2.txt');
 
 %% Scales
 t_scale = 7.4e-2; % To milliseconds
