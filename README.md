@@ -7,22 +7,15 @@ I wrote and used this code in 2020 for the class EPS 290 Computational Fluid Dyn
 
 # Motivation
 
-In various geophysical studies we are interested in the viscosities of various fluids. Examples include silicate melts in igneous settings, as well as iron alloys at core pressure and temperature conditions. Ideally we would like to experimentally measure these viscosities. One such experimental technique to do this is a "ball drop viscosometry experiment". A ball falling (or rising) through a fluid will reach a terminal velocity that is dependent on the viscosity of the fluid, the radius of the ball, gravitational acceleration, and the density contrast between the ball and the fluid. If the other parameters can be measured, then the viscosity can be determined. 
+In various geophysical studies we are interested in the viscosities of various fluids. Examples include silicate melts in igneous settings, as well as iron alloys at core pressure and temperature conditions. Ideally we would like to experimentally measure these viscosities. One such experimental technique to do this is a "ball drop viscosometry experiment". A ball falling (or rising) through a fluid will reach a terminal velocity that is dependent on the viscosity of the fluid, the radius of the ball, gravitational acceleration, and the density contrast between the ball and the fluid. This is a result of [Stokes' law](https://en.wikipedia.org/wiki/Stokes%27_law). If the other parameters can be measured, then the viscosity can be determined. 
 
 For geophysical fluids, it is often the case that the experiments must be performed at very high pressures and temperatures. As a result, the meduim that the ball falls through must be made very small. 
 
 <img src="https://user-images.githubusercontent.com/38541020/103841545-b3d6d380-5048-11eb-9ebf-d31c76fdb8d3.png" height="400"/>
 Clockwise from top-left: sample capsule containing material that will be melted and ball that will fall; octahedral pressure medium for holding capsule; anvils to apply pressure to sample; multi anvil press. Source: own work (CC BY-SA 3.0 US).
 
-<span class="img_container center" style="display: block;">
-    <img alt="test" src="https://user-images.githubusercontent.com/38541020/103841545-b3d6d380-5048-11eb-9ebf-d31c76fdb8d3.png" height="400" style="display:block; margin-left: auto; margin-right: auto;" title="caption" />
-    <span class="img_caption" style="display: block; text-align: center;">caption</span>
-</span>
 
-
-To account for the walls and ends of the capsule, correction terms can be added to Stokes' law (ref). One approporiate question to ask is if these correction terms are neccesary and/or valid.
-
-To answer this question I developed this code to conduct a numerical equivalent experiment.
+To account for the walls and ends of the capsule, correction terms can be added to Stokes' law, (Faxén, 1925; Maude, 1961). One approporiate question to ask is if these correction terms are neccesary and/or valid. To answer this question I developed this code to conduct a numerical equivalent experiment.
 
 ## Numerical setup
 
@@ -66,4 +59,10 @@ Script and notebook examples can be found in the `examples/` directory.
 - [ ] Explore fluids of different viscosities.
   - [ ] E.g. silicate melts.
 - [ ] Explicitally model the time dependence of temperature in the experiment.
+
+# References
+
+Faxén, H., 1925. Gegenseitige Einwirkung zweier Kugeln, die in einer zähen Flüssigkeit fallen. R. Friedländer & Sohn.
+
+Maude, A.D., 1961. End effects in a falling-sphere viscometer. British Journal of Applied Physics, 12(6), p.293.
 
