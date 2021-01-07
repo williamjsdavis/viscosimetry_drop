@@ -15,7 +15,6 @@ out_results = get_results(dir, dir, "example.jld2"; Ncourse=11, verbose=false)
 ### Plot results
 using Plots
 
-
 p1 = plot(out_results[:,1],out_results[:,2],
           label="test1", title="Circle radius");
 p2 = plot(out_results[:,1],out_results[:,3],
