@@ -30,7 +30,7 @@ anim1 = @animate for iter in iterations
     t = file["timeseries/t/$iter"]*7.4e-2
     b_snapshot = file["timeseries/b/$iter"][1, :, :]
 
-    contourf(yb, zb, b_snapshot',color=:balance,
+    contourf(yb, zb, b_snapshot',color=:inferno,
              title="Buoyancy, t=$(@sprintf("%.2f", t)) ms",
              aspect_ratio=:equal)
 end
