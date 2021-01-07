@@ -9,7 +9,15 @@ I wrote and used this code in 2020 for the class EPS 290 Computational Fluid Dyn
 
 In various geophysical studies we are interested in the viscosities of various fluids. Examples include silicate melts in igneous settings, as well as iron alloys at core pressure and temperature conditions. Ideally we would like to experimentally measure these viscosities. One such experimental technique to do this is a "ball drop viscosometry experiment". A ball falling (or rising) through a fluid will reach a terminal velocity that is dependent on the viscosity of the fluid, the radius of the ball, gravitational acceleration, and the density contrast between the ball and the fluid. If the other parameters can be measured, then the viscosity can be determined. 
 
-For geophysical fluids, it is often the case that the experiments must be performed at very high pressures and temperatures. As a result, the meduim that the ball falls through must be made very small. See below
+For geophysical fluids, it is often the case that the experiments must be performed at very high pressures and temperatures. As a result, the meduim that the ball falls through must be made very small. 
+
+<img src="https://user-images.githubusercontent.com/38541020/103841545-b3d6d380-5048-11eb-9ebf-d31c76fdb8d3.png" height="400"/>
+Clockwise from top-left: sample capsule containing material that will be melted and ball that will fall; octahedral pressure medium for holding capsule; anvils to apply pressure to sample; multi anvil press. Source: own work (CC BY-SA 3.0 US).
+
+<span class="img_container center" style="display: block;">
+    <img alt="test" src="https://user-images.githubusercontent.com/38541020/103841545-b3d6d380-5048-11eb-9ebf-d31c76fdb8d3.png" height="400" style="display:block; margin-left: auto; margin-right: auto;" title="caption" />
+    <span class="img_caption" style="display: block; text-align: center;">caption</span>
+</span>
 
 
 To account for the walls and ends of the capsule, correction terms can be added to Stokes' law (ref). One approporiate question to ask is if these correction terms are neccesary and/or valid.
@@ -26,7 +34,7 @@ The capsule is modelled as a 2D domain with no-slip boundary conditions, and the
 
 The following animations are an experiment performed at ![equation](https://latex.codecogs.com/gif.latex?\mu=10^{-2}\text{&space;Pa&space;s}).
 
-<img src="https://user-images.githubusercontent.com/38541020/103839702-dbc43800-5044-11eb-9057-f98ed97dafa1.gif" height="200"/><img src="https://user-images.githubusercontent.com/38541020/103839734-ef6f9e80-5044-11eb-8c94-792ad088cf04.gif" height="200"/>
+<img src="https://user-images.githubusercontent.com/38541020/103839702-dbc43800-5044-11eb-9057-f98ed97dafa1.gif" height="250"/><img src="https://user-images.githubusercontent.com/38541020/103839734-ef6f9e80-5044-11eb-8c94-792ad088cf04.gif" height="250"/>
 
 ## Post-processing
 
