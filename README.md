@@ -12,8 +12,8 @@ In various geophysical studies we are interested in the viscosities of various f
 For geophysical fluids, it is often the case that the experiments must be performed at very high pressures and temperatures. As a result, the meduim that the ball falls through must be made very small. 
 
 <img src="https://user-images.githubusercontent.com/38541020/103841545-b3d6d380-5048-11eb-9ebf-d31c76fdb8d3.png" height="400"/>
-Clockwise from top-left: sample capsule containing material that will be melted and ball that will fall; octahedral pressure medium for holding capsule; anvils to apply pressure to sample; multi anvil press. Source: own work (CC BY-SA 3.0 US).
 
+Clockwise from top-left: sample capsule containing material that will be melted and ball that will fall; octahedral pressure medium for holding capsule; anvils to apply pressure to sample; multi anvil press. Source: own work (CC BY-SA 3.0 US).
 
 To account for the walls and ends of the capsule, correction terms can be added to Stokes' law, (Faxén, 1925; Maude, 1961). One approporiate question to ask is if these correction terms are neccesary and/or valid. To answer this question I developed this code to conduct a numerical equivalent experiment.
 
