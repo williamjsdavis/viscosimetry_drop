@@ -26,7 +26,7 @@ The capsule is modelled as a 2D domain with no-slip boundary conditions, and the
 
 The following animations are an experiment performed at ![equation](https://latex.codecogs.com/gif.latex?\mu=10^{-2}\text{&space;Pa&space;s}).
 
-<img src="https://user-images.githubusercontent.com/38541020/103839702-dbc43800-5044-11eb-9057-f98ed97dafa1.gif" height="400"/><img src="https://user-images.githubusercontent.com/38541020/103839734-ef6f9e80-5044-11eb-8c94-792ad088cf04.gif" height="400"/>
+<img src="https://user-images.githubusercontent.com/38541020/103839702-dbc43800-5044-11eb-9057-f98ed97dafa1.gif" height="200"/><img src="https://user-images.githubusercontent.com/38541020/103839734-ef6f9e80-5044-11eb-8c94-792ad088cf04.gif" height="200"/>
 
 ## Post-processing
 
