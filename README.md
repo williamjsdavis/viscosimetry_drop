@@ -1,5 +1,5 @@
-# Viscosometry Drop
-An experimenting suite for ball drop viscosometry experiments.
+# Viscosimetry Drop
+An experimenting suite for ball drop viscosimetry experiments.
 
 Created by William Davis.
 
@@ -7,7 +7,7 @@ I wrote and used this code in 2020 for the class EPS 290 Computational Fluid Dyn
 
 # Motivation
 
-In various geophysical studies we are interested in the viscosities of various fluids, and ideally we would like to experimentally measure these viscosities. Examples include silicate melts in igneous settings (e.g. Reid et al., 2003), as well as iron alloys at core pressure and temperature conditions (e.g. Dobson et al., 2000). One such experimental technique to do this is a "falling ball viscosometry experiment". A ball/sphere falling through a fluid will reach a terminal velocity that is dependent on the viscosity of the fluid, the radius of the ball, gravitational acceleration, and the density contrast between the ball and the fluid. This is a result of [Stokes' law](https://en.wikipedia.org/wiki/Stokes%27_law). If the other parameters can be measured, then the viscosity can be determined. 
+In various geophysical studies we are interested in the viscosities of various fluids, and ideally we would like to experimentally measure these viscosities. Examples include silicate melts in igneous settings (e.g. Reid et al., 2003), as well as iron alloys at core pressure and temperature conditions (e.g. Dobson et al., 2000). One such experimental technique to do this is a "falling ball viscosimetry experiment". A ball/sphere falling through a fluid will reach a terminal velocity that is dependent on the viscosity of the fluid, the radius of the ball, gravitational acceleration, and the density contrast between the ball and the fluid. This is a result of [Stokes' law](https://en.wikipedia.org/wiki/Stokes%27_law). If the other parameters can be measured, then the viscosity can be determined. 
 
 For geophysical fluids, it is often the case that the experiments must be performed at very high pressures and temperatures. As a result, the meduim that the ball falls through must be made very small. Commonly, experiments are conducted in a multi-anvil press. The ball position and terminal velocity is measured by shining brilliant x-rays through the sample as the experiment is progressing.
 
